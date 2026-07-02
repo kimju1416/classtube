@@ -326,10 +326,10 @@
     <span class="time-label">재생 시간</span>
     <button class="time-chip on" data-max="9999">전체</button>
     <button class="time-chip" data-max="5">5분 이하</button>
-    <button class="time-chip" data-max="10">10분 이하</button>
-    <button class="time-chip" data-max="15">15분 이하</button>
-    <button class="time-chip" data-max="20">20분 이하</button>
-    <button class="time-chip" data-max="30">30분 이하</button>
+    <button class="time-chip" data-min="5" data-max="10">5~10분</button>
+    <button class="time-chip" data-min="10" data-max="15">10~15분</button>
+    <button class="time-chip" data-min="15" data-max="20">15~20분</button>
+    <button class="time-chip" data-min="20" data-max="30">20~30분</button>
     <button class="time-chip" data-min="30" data-max="9999">30분 초과</button>
   </div>
   <div class="result-info" id="resultInfo"></div>
@@ -1710,7 +1710,7 @@ function filtered() {
   return VIDEOS.filter(v => {
     const dur = getMin(v);
     if (dur > maxMin) return false;
-    if (dur < minMin) return false;
+    if (minMin > 0 && dur <= minMin) return false;
     if (aCat!=='all' && v.cat!==aCat) return false;
     if (aLv!=='all' && v.lv!==aLv && v.lv!=='all') return false;
     if (q) { const lo=q.toLowerCase(); if(!v.title.toLowerCase().includes(lo)&&!v.cat.includes(q)) return false; }
