@@ -1,0 +1,109 @@
+name: Check YouTube Links
+
+# 매달 자동으로 videos.json의 유튜브 영상 링크가 살아있는지 점검합니다.
+# 깨진 링크가 발견되면 자동으로 GitHub Issue를 생성합니다.
+
+on:
+  schedule:
+    # 매월 1일 00:00 UTC
+    - cron: '0 0 1 * *'
+  workflow_dispatch: {}
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run link checker
+        id: check
+        continue-on-error: true
+        run: |
+          echo "check-links.mjs 실행 (videos.json 기준 점검)..."
+          node check-links.mjs
+        working-directory: ${{ github.workspace }}
+
+      - name: Upload suspicious-links.json artifact
+        if: steps.check.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: suspicious-links
+          path: suspicious-links.json
+          if-no-files-found: ignore
+
+      - name: Create issue on failure
+        if: steps.check.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            const now = new Date();
+            const yyyy = now.getUTCFullYear();
+            const mm = String(now.getUTCMonth() + 1).padStart(2, '0');
+            const issueTitle = `[자동] 깨진 유튜브 링크 발견 - ${yyyy}-${mm} 점검`;
+
+            // 중복 이슈 방지: 동일 제목의 열린 이슈가 이미 있으면 건너뜀
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'broken-link-check',
+              per_page: 100,
+            });
+            const duplicate = existing.data.find((issue) => issue.title === issueTitle);
+            if (duplicate) {
+              console.log(`이미 동일한 제목의 열린 이슈(#${duplicate.number})가 있어 새 이슈를 생성하지 않습니다.`);
+              return;
+            }
+
+            // suspicious-links.json 읽기
+            let suspicious = [];
+            try {
+              const raw = fs.readFileSync('suspicious-links.json', 'utf8');
+              suspicious = JSON.parse(raw);
+            } catch (e) {
+              console.log(`suspicious-links.json을 읽지 못했습니다: ${e.message}`);
+            }
+
+            let body = `자동 링크 점검(매월 1일 실행) 결과 깨졌을 가능성이 있는 유튜브 영상이 ${suspicious.length}건 발견되었습니다.\n\n`;
+            body += `실행: [워크플로 실행 로그](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n\n`;
+
+            if (suspicious.length > 0) {
+              body += `| ID | 제목 | 비고 |\n`;
+              body += `| --- | --- | --- |\n`;
+              for (const s of suspicious) {
+                const id = s.id ?? '(알 수 없음)';
+                const title = (s.title ?? '').replace(/\|/g, '\\|');
+                const note = s.error ? `오류: ${s.error}` : `status=${s.status ?? '?'}, len=${s.len ?? '?'}`;
+                body += `| ${id} | ${title} | ${note} |\n`;
+              }
+              body += `\n각 ID를 https://youtube.com/watch?v=<ID> 에서 직접 확인한 뒤, 삭제/비공개된 영상이면 videos.json에서 제거해 주세요.\n`;
+            } else {
+              body += `(suspicious-links.json 파일을 찾지 못했거나 비어 있습니다. 워크플로 로그를 직접 확인해 주세요.)\n`;
+            }
+
+            const created = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: issueTitle,
+              body,
+              labels: ['broken-link-check'],
+            });
+            console.log(`이슈 생성됨: #${created.data.number}`);
+
+      - name: Fail job if broken links were found
+        if: steps.check.outcome == 'failure'
+        run: |
+          echo "깨진 링크가 발견되어 작업을 실패로 표시합니다. 생성된 이슈를 확인하세요."
+          exit 1

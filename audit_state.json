@@ -1,0 +1,87 @@
+{
+  "_readme": "카테고리별 마지막 전수 감사 날짜를 추적하는 파일. 다음 감사 시 lastFullAudit이 가장 오래된 카테고리부터 우선 순환 점검하면 매번 27개 전체를 다시 볼 필요가 없다. 신규로 추가되는 영상은 카테고리와 무관하게 항상 전수 감사 대상.",
+  "lastFullAuditRoundDate": "2026-07-03",
+  "categories": {
+    "학교폭력예방": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "생명존중": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "성교육": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "도박예방": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "금연": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "음주예방": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "약물예방": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "장애인식": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "다문화": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "안전교육": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "건강": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "정신건강": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "식품안전": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "환경": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "민주시민": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "통일평화": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "역사": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "세계시민": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "봉사나눔": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "인성": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "미디어": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "진로": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "경제금융": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "독서": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "소비자교육": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "개인정보": {
+      "lastFullAudit": "2026-07-03"
+    },
+    "직업창업": {
+      "lastFullAudit": "2026-07-03"
+    }
+  }
+}
