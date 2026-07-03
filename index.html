@@ -50,7 +50,7 @@
 
     .logo-area { width: var(--sw); display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
     .logo { font-size: 24px; font-weight: 900; letter-spacing: -1px; white-space: nowrap; }
-    .header-desc { flex-shrink: 0; text-align: right; border-left: 1px solid #333; padding-left: 12px; margin-left: 4px; }
+    .header-desc { flex-shrink: 0; text-align: right; border-left: 1px solid #333; padding-left: 12px; margin-left: auto; }
     .header-desc .hd-stat { font-size: 12px; font-weight: 700; color: var(--text); line-height: 1.3; }
     .header-desc .hd-sub { font-size: 10px; color: var(--sub); margin-top: 1px; }
     .logo em { color: var(--red); font-style: normal; }
@@ -88,14 +88,17 @@
     /* ── SIDEBAR ── */
     .sidebar {
       position: fixed; top: var(--hh); left: 0; bottom: 0;
-      width: var(--sw); overflow-y: auto; overflow-x: hidden;
-      padding: 12px 0 40px; background: var(--bg);
+      width: var(--sw); background: var(--bg);
       transition: transform 0.2s; z-index: 100;
+    }
+    .sidebar.hidden { transform: translateX(-100%); }
+    .sb-list {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 40px;
+      overflow-y: auto; overflow-x: hidden; padding: 12px 0 8px;
       scrollbar-width: thin; scrollbar-color: var(--border) transparent;
     }
-    .sidebar::-webkit-scrollbar { width: 4px; }
-    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-    .sidebar.hidden { transform: translateX(-100%); }
+    .sb-list::-webkit-scrollbar { width: 4px; }
+    .sb-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
     .sb-sep { margin: 10px 12px; border: none; border-top: 1px solid #282828; }
     .sb-group-label {
@@ -121,6 +124,37 @@
       flex-shrink: 0;
     }
     .sb-item.on .sb-count { background: var(--border); color: var(--text); }
+
+    /* ── SIDEBAR FOOTER (fixed, follows sidebar open/close on mobile) ── */
+    .sb-footer {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 40px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--bg); border-top: 1px solid #262626;
+    }
+    .sb-footer-icon { display: flex; color: inherit; text-decoration: none; }
+    .icon-mask {
+      display: inline-block; width: 15px; height: 15px;
+      background-color: var(--sub);
+      -webkit-mask-size: contain; mask-size: contain;
+      -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+      -webkit-mask-position: center; mask-position: center;
+      transition: background-color 0.15s;
+    }
+    .sb-footer-icon:hover .icon-mask { background-color: var(--red); }
+    .icon-instagram { -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@13/icons/instagram.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@13/icons/instagram.svg'); }
+    .icon-threads { -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@13/icons/threads.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@13/icons/threads.svg'); }
+    .sb-footer-sep { width: 1px; height: 12px; background: var(--border); }
+    .sb-footer-text { font-size: 11.5px; color: var(--sub); letter-spacing: 0.02em; }
+
+    /* ── HEADER SOCIAL ICON ── */
+    .ig-link {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .ig-link:hover { background: var(--surface); }
+    .ig-link .icon-mask { width: 18px; height: 18px; background-color: var(--sub); }
+    .ig-link:hover .icon-mask { background-color: var(--red); }
 
     /* ── OVERLAY (mobile) ── */
     .overlay {
@@ -342,10 +376,25 @@
     <div class="hd-stat">1,778편+ &nbsp;·&nbsp; 초·중등</div>
     <div class="hd-sub">공강·자율활동·의무교육 영상 아카이브</div>
   </div>
+  <a class="ig-link" href="https://instagram.com/kimju.zip" target="_blank" rel="noopener" aria-label="Instagram">
+    <span class="icon-mask icon-instagram"></span>
+  </a>
 </header>
 
 <!-- ── SIDEBAR ── -->
-<aside class="sidebar" id="sidebar"></aside>
+<aside class="sidebar" id="sidebarShell">
+  <div class="sb-list" id="sidebar"></div>
+  <div class="sb-footer">
+    <a class="sb-footer-icon" href="https://instagram.com/kimju.zip" target="_blank" rel="noopener" aria-label="Instagram">
+      <span class="icon-mask icon-instagram"></span>
+    </a>
+    <a class="sb-footer-icon" href="https://threads.net/@kimju.zip" target="_blank" rel="noopener" aria-label="Threads">
+      <span class="icon-mask icon-threads"></span>
+    </a>
+    <span class="sb-footer-sep"></span>
+    <span class="sb-footer-text">kimju.zip</span>
+  </div>
+</aside>
 
 <!-- Mobile overlay -->
 <div class="overlay" id="overlay"></div>
@@ -661,12 +710,12 @@ document.getElementById('moreBtn').addEventListener('click', () => { showN+=PAGE
 
 /* sidebar toggle */
 function closeSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarShell').classList.remove('open');
   document.getElementById('overlay').style.display='none';
 }
 
 document.getElementById('menuBtn').addEventListener('click', () => {
-  const s=document.getElementById('sidebar');
+  const s=document.getElementById('sidebarShell');
   const ov=document.getElementById('overlay');
   const c=document.getElementById('content');
   if (window.innerWidth<=768) {
