@@ -15,15 +15,13 @@
       "lastFullAudit": "2026-08-08"
     },
     "금연": {
-      "lastFullAudit": "2026-08-14",
-      "pending": "2026-08-08 전수점검 중 YouTube API 할당량 소진으로 부분 검색만 완료 — 재검색 필요"
+      "lastFullAudit": "2026-08-08"
     },
     "음주예방": {
       "lastFullAudit": "2026-08-08"
     },
     "약물예방": {
-      "lastFullAudit": "2026-08-14",
-      "pending": "2026-08-08 전수점검 중 YouTube API 할당량 소진으로 부분 검색만 완료 — 재검색 필요"
+      "lastFullAudit": "2026-08-08"
     },
     "장애인식": {
       "lastFullAudit": "2026-08-08"
@@ -71,8 +69,7 @@
       "lastFullAudit": "2026-08-08"
     },
     "경제금융": {
-      "lastFullAudit": "2026-07-03",
-      "pending": "2026-08-08 전수점검 중 YouTube API 할당량 소진으로 부분 검색만 완료 — 재검색 필요"
+      "lastFullAudit": "2026-08-08"
     },
     "독서": {
       "lastFullAudit": "2026-08-08"
@@ -81,32 +78,26 @@
       "lastFullAudit": "2026-08-08"
     },
     "개인정보": {
-      "lastFullAudit": "2026-07-03",
-      "pending": "2026-08-08 전수점검 중 YouTube API 할당량 소진으로 부분 검색만 완료 — 재검색 필요"
+      "lastFullAudit": "2026-08-08"
     },
     "직업창업": {
-      "lastFullAudit": "2026-08-14",
-      "pending": "2026-08-08 전수점검 중 YouTube API 할당량 소진으로 부분 검색만 완료 — 재검색 필요"
+      "lastFullAudit": "2026-08-08"
     },
     "인권교육": {
-      "lastFullAudit": "2026-07-03",
-      "pending": "2026-08-08 전수점검 중 YouTube API 할당량 소진으로 부분 검색만 완료 — 재검색 필요"
+      "lastFullAudit": "2026-08-08"
     },
     "도핑교육": {
-      "lastFullAudit": "2026-07-03",
-      "pending": "2026-08-08 전수점검 중 YouTube API 할당량 소진으로 부분 검색만 완료 — 재검색 필요"
+      "lastFullAudit": "2026-08-08"
     },
     "청렴교육": {
-      "lastFullAudit": "2026-07-03",
-      "pending": "2026-08-08 전수점검 중 YouTube API 할당량 소진으로 부분 검색만 완료 — 재검색 필요"
+      "lastFullAudit": "2026-08-08",
+      "note": "2026-08-08 기관 채널 전수 훑기 완료 — 신규 적합 콘텐츠 없음(프로선수 윤리교육 중복분만 검색됨)"
     },
     "양성평등": {
-      "lastFullAudit": "2026-07-16",
-      "pending": "2026-08-08 전수점검 중 YouTube API 할당량 소진으로 부분 검색만 완료 — 재검색 필요"
+      "lastFullAudit": "2026-08-08"
     },
     "노동인권": {
-      "lastFullAudit": "2026-07-16",
-      "pending": "2026-08-08 전수점검 중 YouTube API 할당량 소진으로 부분 검색만 완료 — 재검색 필요"
+      "lastFullAudit": "2026-08-08"
     }
   }
 }
