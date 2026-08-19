@@ -12,7 +12,7 @@
  *  - JSON 문법 유효성
  *  - 필수 필드(id,title,cat,lv,dur) 존재 여부 및 타입
  *  - id 중복 여부
- *  - cat이 32개 카테고리 키 중 하나인지
+ *  - cat이 36개 카테고리 키 중 하나인지
  *  - lv가 elem|mid|all 중 하나인지
  *  - grade 값 유효성 및 elem 전용 여부 (경고)
  *  - dur이 0 초과 180 이하인지 (경고)
@@ -31,7 +31,7 @@ const VALID_CATS = [
   '민주시민', '통일평화', '역사', '세계시민', '봉사나눔', '인성', '미디어',
   '진로', '경제금융', '독서', '소비자교육', '개인정보', '직업창업',
   '인권교육', '도핑교육', '청렴교육', '양성평등', '노동인권',
-  'AI교육', '독도교육',
+  'AI교육', '독도교육', '아동학대예방', '저작권',
 ];
 const VALID_LV = ['elem', 'mid', 'all'];
 const VALID_GRADE = ['low', 'high'];
@@ -126,7 +126,7 @@ videos.forEach((v, idx) => {
     if (typeof v.cat !== 'string') {
       err(label, `cat은 문자열이어야 합니다 (현재 타입: ${typeof v.cat})`);
     } else if (!VALID_CATS.includes(v.cat)) {
-      err(label, `cat 값이 유효하지 않습니다: '${v.cat}' (허용된 32개 카테고리 중 하나여야 함)`);
+      err(label, `cat 값이 유효하지 않습니다: '${v.cat}' (허용된 36개 카테고리 중 하나여야 함)`);
     }
   }
 

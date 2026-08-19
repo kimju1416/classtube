@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class Tube — 교육 영상 아카이브</title>
-  <meta name="description" content="공강·자율활동·의무교육 영상 아카이브. 학교폭력예방부터 진로교육까지 34개 카테고리, 검증된 교육 영상 3,056편.">
+  <meta name="description" content="공강·자율활동·의무교육 영상 아카이브. 학교폭력예방부터 진로교육까지 36개 카테고리, 검증된 교육 영상 3,135편.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Class Tube — 교육 영상 아카이브">
-  <meta property="og:description" content="공강·자율활동·의무교육 영상 아카이브. 학교폭력예방부터 진로교육까지 34개 카테고리, 검증된 교육 영상 3,056편.">
+  <meta property="og:description" content="공강·자율활동·의무교육 영상 아카이브. 학교폭력예방부터 진로교육까지 36개 카테고리, 검증된 교육 영상 3,135편.">
   <meta property="og:image" content="https://kimju1416.github.io/classtube/og.png">
   <meta property="og:image:width" content="1774">
   <meta property="og:image:height" content="887">
@@ -306,6 +306,8 @@
     .vb-노동인권     { background:#431407; color:#FDBA74; }
     .vb-AI교육       { background:#083344; color:#67E8F9; }
     .vb-독도교육     { background:#1E3A5F; color:#FBBF24; }
+    .vb-아동학대예방 { background:#3A1508; color:#FFC49B; }
+    .vb-저작권       { background:#232043; color:#C7B8FF; }
 
     .vb-elem { background:#052E16; color:#6EE7B7; }
     .vb-mid  { background:#172554; color:#93C5FD; }
@@ -383,7 +385,7 @@
     <button class="lvl-btn" data-lv="mid">중등</button>
   </div>
   <div class="header-desc">
-    <div class="hd-stat" id="hdStat">3,056편+ &nbsp;·&nbsp; 초·중등</div>
+    <div class="hd-stat" id="hdStat">3,135편+ &nbsp;·&nbsp; 초·중등</div>
     <div class="hd-sub">공강·자율활동·의무교육 영상 아카이브</div>
     <div class="hd-upd" id="hdUpd">2026.08.20 업데이트</div>
   </div>
@@ -406,7 +408,7 @@
     <span class="sb-footer-sep"></span>
     <span class="sb-footer-text">kimju.zip</span>
     </div>
-    <div class="sb-footer-meta" id="sbMeta">3,056편 · 2026.08.20 업데이트</div>
+    <div class="sb-footer-meta" id="sbMeta">3,135편 · 2026.08.20 업데이트</div>
   </div>
 </aside>
 
@@ -471,6 +473,7 @@ const CATS = [
   { key:'음주예방',    label:'음주예방',      icon:I(`<path d="M7.8 3.8h8.4l-.8 5.4a3.5 3.5 0 0 1-6.8 0z"/><path d="M12 13.4v6.2M9 19.6h6"/><path d="M4.2 4.4l15.6 15.6"/>`), group:'의무교육' },
   { key:'약물예방',    label:'약물예방',      icon:I(`<path d="M9.4 4.6l10 10a4.6 4.6 0 0 1-6.5 6.5l-10-10a4.6 4.6 0 0 1 6.5-6.5z"/><path d="M6.2 7.8l10 10"/>`), group:'의무교육' },
   { key:'장애인식',    label:'장애인식개선',  icon:I(`<circle cx="12.6" cy="4.6" r="2"/><path d="M10.4 8.4v5.2h5.2"/><circle cx="10.4" cy="17" r="4"/><path d="M15.6 13.6l2.4 4.4h2.4"/>`), group:'의무교육' },
+  { key:'아동학대예방', label:'아동학대 예방', icon:I(`<path d="M12 3.2l7.2 2.9v5.4c0 4.3-2.9 7.9-7.2 9.3-4.3-1.4-7.2-5-7.2-9.3V6.1z"/><circle cx="12" cy="10.2" r="1.9"/><path d="M8.9 16.6a3.3 3.3 0 0 1 6.2 0"/>`), group:'의무교육' },
   { key:'다문화',      label:'다문화',        icon:I(`<circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2"/><path d="M12 3.4a13.5 13.5 0 0 1 0 17.2 13.5 13.5 0 0 1 0-17.2z"/>`), group:'의무교육' },
   { key:'안전교육',    label:'안전교육',      icon:I(`<path d="M3.6 16.2a8.4 8.4 0 0 1 16.8 0"/><path d="M9 16.2V8.2a1.6 1.6 0 0 1 1.6-1.6h2.8A1.6 1.6 0 0 1 15 8.2v8"/><path d="M2.6 16.2h18.8"/>`), group:'건강·안전' },
   { key:'건강',        label:'건강·보건',    icon:I(`<path d="M3 12.2h4.2l2.4-6.2 4 12.4 2.4-6.2H21"/>`), group:'건강·안전' },
@@ -485,6 +488,7 @@ const CATS = [
   { key:'봉사나눔',    label:'봉사·나눔',    icon:I(`<path d="M12 13.4s-4.6-2.9-4.6-6.1A2.9 2.9 0 0 1 12 5.6a2.9 2.9 0 0 1 4.6 1.7c0 3.2-4.6 6.1-4.6 6.1z"/><path d="M4.4 16.4a10.4 10.4 0 0 0 15.2 0"/>`), group:'가치·사회' },
   { key:'인성',        label:'인성·공감',    icon:I(`<circle cx="7.4" cy="13.4" r="2.5"/><circle cx="16.6" cy="13.4" r="2.5"/><path d="M12 10.2s-2.1-1.4-2.1-2.8a1.3 1.3 0 0 1 2.1-.9 1.3 1.3 0 0 1 2.1.9c0 1.4-2.1 2.8-2.1 2.8z"/><path d="M3.4 20.4a4 4 0 0 1 8 0M12.6 20.4a4 4 0 0 1 8 0"/>`), group:'성장·진로' },
   { key:'미디어',      label:'미디어·디지털', icon:I(`<rect x="7" y="3" width="10" height="18" rx="2.6"/><path d="M10.6 17.8h2.8"/>`), group:'성장·진로' },
+  { key:'저작권',      label:'저작권·지식재산', icon:I(`<circle cx="12" cy="12" r="8.6"/><path d="M15 9.6a4.1 4.1 0 1 0 0 4.8"/>`), group:'성장·진로' },
   { key:'AI교육',      label:'AI·디지털 소양', icon:I(`<rect x="7" y="7" width="10" height="10" rx="2.2"/><path d="M10.2 3.2v3.8M13.8 3.2v3.8M10.2 17v3.8M13.8 17v3.8"/><path d="M3.2 10.2H7M3.2 13.8H7M17 10.2h3.8M17 13.8h3.8"/>`), group:'성장·진로' },
   { key:'진로',        label:'진로·꿈',      icon:I(`<circle cx="12" cy="12" r="8.6"/><path d="M15.6 8.4l-2.2 5.2-5.2 2.2 2.2-5.2z"/>`), group:'성장·진로' },
   { key:'경제금융',    label:'경제·금융',    icon:I(`<circle cx="12" cy="12" r="8.6"/><path d="M8 9.2l2 6.2 2-4.2 2 4.2 2-6.2"/><path d="M8.4 13h7.2"/>`), group:'성장·진로' },
